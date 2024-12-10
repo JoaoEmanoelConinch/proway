@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
     'alunos',
 ]
 
@@ -131,3 +133,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 30,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'TOKEN_OBTAIN_SERIALIZER': 'protestadov1.serializers.CustomTokenObtainPairSerializer',
+    'TOKEN_REFRESH_SERIALIZER': 'protestadov1.serializers.CustomTokenRefreshSerializer',
+    'SIGNING_KEY': SECRET_KEY,
+    'USER_ID_FIELD': 'id',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'CLAIMS': {
+        'username': 'username',
+        'email': 'email',
+    },
+}

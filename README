@@ -1,16 +1,38 @@
-Este projeto foi criado da seguinte maneira:
-
-- Instalar python3.11 ou superior
-- Na pasta do projeto, isntalar um venv com `python3 -m venv venv`
-- Ativar o venv com `. ./venv/bin/activate`
-- Instalar pacotes do django `pip3 install -r requirements.txt`
-
-
-# PARA EXECUTAR
-
-```sh
-docker compose build # este comando monta/remonta o ambiente
-docker compose up -d # este comando liga o ambiente
-docker compose down # este comando desliga o ambiente
+Este projeto tem as seguintes definições:
+- Rota na porta 8080 ( precisa ter esta porta exportada )
+- Usamos sempre a pasta /code para desenvolvimento, use-a no servidor de produção e homologação
+- Usamos a imagem python:3.11-slim
+- Atualmente rodamos o banco da seguinte manteira: 
+```sh 
+docker run -e POSTGRES_USER=proway -e POSTGRES_PASSWORD=proway -e POSTGRES_DB=proway -p 5432:5432 postgres 
 ```
 
+
+
+Este projeto foi criado da seguinte maneira:
+
+1) Instalar o python3
+```sh
+apt-get update
+apt-get install python3 
+```
+
+2) Instalar instalar os pacotes
+```sh
+pip3 install -r requirements.txt
+```
+
+3) Executar com
+```sh
+/code/startup.sh
+```
+
+4) Para acessar:
+- http://<ip_servidor>:8080/admin
+- Usuario: proway
+- Senha: proway
+
+5) Para acessar via API:
+- http://<IP>:8080/api-auth/login/
+- Usuario: proway
+- Senha: proway
