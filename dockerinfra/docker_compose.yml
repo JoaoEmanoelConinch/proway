@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  db: 
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_USER: proway
+      POSTGRES_PASSWORD: proway
+      POSTGRES_DB: proway
+    volumes:
+      - ./db_local:/var/lib/postgresql/data
+      
