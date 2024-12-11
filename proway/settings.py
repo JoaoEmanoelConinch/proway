@@ -47,7 +47,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -73,7 +72,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proway.wsgi.application'
 
+# CSRF_TRUSTED_ORIGINS = [ 'http://*' ]
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True
 
+INSTALLED_APPS += [
+    'corsheaders',
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+] + MIDDLEWARE
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
