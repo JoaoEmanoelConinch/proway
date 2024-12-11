@@ -72,7 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proway.wsgi.application'
 
-# CSRF_TRUSTED_ORIGINS = [ 'http://*' ]
+CSRF_TRUSTED_ORIGINS = [ 'http://localhost:8081' ]
+CSRF_COOKIE_SECURE = False
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -151,7 +152,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+#        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
