@@ -3,7 +3,8 @@ services:
 
   back:
     depends_on:
-      - postgres
+      postgres:
+       condition: service_healthy
     build: .
     ports:
       - "8080:8080"
@@ -26,3 +27,8 @@ services:
       POSTGRES_DB: proway
     volumes:
       - ./db_local:/var/lib/postgresql/data
+    healthcheck:
+      interval: 2s
+      timeout: 2s
+      retries: 5
+      test: ["CMD-SHELL", "pg_isready -U proway"]
